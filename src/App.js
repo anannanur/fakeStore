@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Menubar from './components/Menubar/Menubar';
+import Products from './components/Products/Products';
+import { useEffect, useState } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  const [item, setItem ] = useState(0)
+    const addItem = () =>{
+        setItem(item + 1)
+    }
+
+    useEffect(() => {
+      AOS.init();
+    }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menubar item={item}></Menubar>
+      <Products addItem={addItem}/>
     </div>
   );
 }
